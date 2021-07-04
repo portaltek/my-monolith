@@ -1,12 +1,41 @@
 package portaltek.mymonolith;
 
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import portaltek.mymonolith.spi.db.model.Item;
+import portaltek.mymonolith.spi.db.model.ItemChoice;
+import portaltek.mymonolith.spi.db.model.ItemStem;
+import portaltek.mymonolith.spi.db.model.ItemType;
+import portaltek.mymonolith.spi.db.repo.ItemRepo;
 
+import java.util.TimeZone;
+
+@Slf4j
 @SpringBootApplication
-public class MyMonolithApplication {
+public class MyMonolithApplication implements CommandLineRunner {
+
+
+	@Autowired
+	ItemRepo itemRepo;
+
+	@Override
+	public void run(String... args) {
+
+		var item = new Item().type(ItemType.MC);
+		item.setStem(new ItemStem().item(item))
+			.addItemChoice(new ItemChoice().item(item))
+			.addItemChoice(new ItemChoice().item(item));
+
+		itemRepo.save(item);
+		log.info(this.getClass().getSimpleName());
+	}
 
 	public static void main(String[] args) {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		SpringApplication.run(MyMonolithApplication.class, args);
 	}
 
