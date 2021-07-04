@@ -3,7 +3,7 @@ package portaltek.mymonolith;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import portaltek.mymonolith.util.App;
+
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ class MyMonolithApplicationTests {
 
 	static Properties prop = new Properties();
 	static String PROP_FILE = "src/test/resources/application.properties";
-	//static String PROP_FILE = "classpath:application.properties";
+
 
 	@BeforeAll
 	static void init() throws IOException {
@@ -40,14 +40,6 @@ class MyMonolithApplicationTests {
 		assertNotNull(appHi);
 	}
 
-	@Test
-	void test3() {
-		String appHi = App.HI.get();
-		String appHi2 = App.HI2.get();
-		log.info(appHi);
-		log.info(appHi2);
-		assertNotNull(appHi);
-		assertNotNull(appHi2);
-	}
+
 
 }
