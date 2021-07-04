@@ -1,10 +1,11 @@
 //file:noinspection SpellCheckingInspection
 
 plugins {
-	id 'org.springframework.boot' version '2.5.2'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	id 'idea'
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'idea'
+    id "org.sonarqube" version "3.0"
 }
 
 group = 'portaldev'
@@ -13,87 +14,95 @@ sourceCompatibility = '16'
 targetCompatibility = '16'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-	test_dbImplementation.extendsFrom testImplementation
-	test_dbRuntime.extendsFrom testRuntime
-	test_restImplementation.extendsFrom testImplementation
-	test_restRuntime.extendsFrom testRuntime
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    test_dbImplementation.extendsFrom testImplementation
+    test_dbRuntime.extendsFrom testRuntime
+    test_restImplementation.extendsFrom testImplementation
+    test_restRuntime.extendsFrom testRuntime
 }
 
 sourceSets {
-	test_db {
-		compileClasspath += sourceSets.main.output
-		runtimeClasspath += sourceSets.main.output
-	}
-	test_rest {
-		compileClasspath += sourceSets.main.output
-		runtimeClasspath += sourceSets.main.output
-	}
+    test_db {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    test_rest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
 }
 idea {
-	module {
-		testSourceDirs += project.sourceSets.test_db.java.srcDirs
-		testSourceDirs += project.sourceSets.test_db.resources.srcDirs
-		testSourceDirs += project.sourceSets.test_rest.java.srcDirs
-		testSourceDirs += project.sourceSets.test_rest.resources.srcDirs
-	}
+    module {
+        testSourceDirs += project.sourceSets.test_db.java.srcDirs
+        testSourceDirs += project.sourceSets.test_db.resources.srcDirs
+        testSourceDirs += project.sourceSets.test_rest.java.srcDirs
+        testSourceDirs += project.sourceSets.test_rest.resources.srcDirs
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation(
-			'org.springframework.boot:spring-boot-starter-data-jpa',
-			'org.springframework.boot:spring-boot-starter-web',
-			'org.projectlombok:lombok',
-			'org.postgresql:postgresql'
-	)
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+    implementation(
+            'org.springframework.boot:spring-boot-starter-data-jpa',
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.projectlombok:lombok',
+            'org.postgresql:postgresql'
+    )
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
-	testAnnotationProcessor "org.projectlombok:lombok"
-	testImplementation(
-			'org.springframework.boot:spring-boot-starter-test',
-	)
-
-
-	test_dbAnnotationProcessor 'org.projectlombok:lombok'
-	test_dbImplementation(
-			'org.springframework.boot:spring-boot-starter-test',
-			'org.testcontainers:postgresql:1.15.3',
-	)
+    testAnnotationProcessor "org.projectlombok:lombok"
+    testImplementation(
+            'org.springframework.boot:spring-boot-starter-test',
+    )
 
 
-	test_restAnnotationProcessor 'org.projectlombok:lombok'
-	test_restImplementation(
-			'org.springframework.boot:spring-boot-starter-test',
+    test_dbAnnotationProcessor 'org.projectlombok:lombok'
+    test_dbImplementation(
+            'org.springframework.boot:spring-boot-starter-test',
+            'org.testcontainers:postgresql:1.15.3',
+    )
 
-	)
+
+    test_restAnnotationProcessor 'org.projectlombok:lombok'
+    test_restImplementation(
+            'org.springframework.boot:spring-boot-starter-test',
+
+    )
 }
 
 
 tasks.withType(Test) {
-	useJUnitPlatform()
-	testLogging {
-		displayGranularity = 2
-		events = ["PASSED", "FAILED", "SKIPPED"]
-	}
+    useJUnitPlatform()
+    testLogging {
+        displayGranularity = 2
+        events = ["PASSED", "FAILED", "SKIPPED"]
+    }
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 task test_db(type: Test) {
-	testClassesDirs = sourceSets.test_db.output.classesDirs
-	classpath += sourceSets.test_db.runtimeClasspath
+    testClassesDirs = sourceSets.test_db.output.classesDirs
+    classpath += sourceSets.test_db.runtimeClasspath
 }
 
 task test_rest(type: Test) {
-	testClassesDirs = sourceSets.test_rest.output.classesDirs
-	classpath += sourceSets.test_rest.runtimeClasspath
+    testClassesDirs = sourceSets.test_rest.output.classesDirs
+    classpath += sourceSets.test_rest.runtimeClasspath
+}
+
+sonarqube  {
+    properties {
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.login", "5904bbad3dafc268395896ce3a44f8305a3e521f"
+        property "sonar.projectKey", "portaltek.my-monolith"
+    }
 }
