@@ -1,4 +1,4 @@
-package portaltek.mymonolith;
+package portaltek.mymonolith.api.rest.item;
 
 
 class ItemRsp {

@@ -1,14 +1,14 @@
-package portaltek.mymonolith;
+package portaltek.mymonolith.core.item;
 
 
-class ItemReq {
+class ItemDto {
 	String value;
 
 	public String getValue() {
 		return value;
 	}
 
-	public ItemReq setValue(String value) {
+	public ItemDto setValue(String value) {
 		this.value = value;
 		return this;
 	}

@@ -1,4 +1,4 @@
-package portaltek.mymonolith.item;
+package portaltek.mymonolith.core.item;
 
 class ItemService {
 
