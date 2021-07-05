@@ -32,8 +32,7 @@ public class Item extends EntityWithUUID {
 	@PrimaryKeyJoinColumn
 	ItemStem stem;
 
-	@OneToMany(cascade = ALL, fetch = LAZY)
-	@JoinColumn(name = "item_id")
+	@OneToMany(cascade = ALL, fetch = LAZY, mappedBy = "item")
 	List<ItemChoice> choices = new ArrayList<>();
 
 	@Enumerated(EnumType.STRING)

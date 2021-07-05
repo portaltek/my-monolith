@@ -13,7 +13,7 @@ import static javax.persistence.FetchType.LAZY;
 public class ItemChoice extends EntityWithUUID {
 
 	@ManyToOne(fetch = LAZY)
-	@JoinColumn(foreignKey = @ForeignKey(name = "FK_ITEM_CHOICE__ITEM"))
+	@JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "FK_ITEM_CHOICE__ITEM"))
 	Item item;
 	Boolean isCorrect = Boolean.FALSE;
 	String body;
