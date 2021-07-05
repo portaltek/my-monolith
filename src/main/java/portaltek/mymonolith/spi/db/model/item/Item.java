@@ -51,7 +51,7 @@ public class Item extends EntityWithUUID {
 		return this;
 	}
 
-	public Item setChoices(List<ItemChoice> choices) {
+	public Item choices(List<ItemChoice> choices) {
 		this.choices = choices;
 		if (isNull(choices)) return this;
 		this.choices.forEach(this::addItemChoice);
@@ -63,6 +63,11 @@ public class Item extends EntityWithUUID {
 		choices.add(itemChoice);
 		return this;
 	}
+
+
+
+
+
 
 	public Audit audit() {
 		return this.audit;
@@ -86,15 +91,8 @@ public class Item extends EntityWithUUID {
 		return this.stem;
 	}
 
-
-
 	public List<ItemChoice> choices() {
 		return this.choices;
-	}
-
-	public Item choices(List<ItemChoice> choices) {
-		this.choices = choices;
-		return this;
 	}
 
 	public ItemType type() {
