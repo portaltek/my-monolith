@@ -1,4 +1,4 @@
-package portaltek.mymonolith.spi.db.model;
+package portaltek.mymonolith.spi.db.model.item;
 
 
 import portaltek.mymonolith.spi.util.jpa.EntityWithUUID;

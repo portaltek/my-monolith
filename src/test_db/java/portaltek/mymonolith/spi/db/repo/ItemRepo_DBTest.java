@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import portaltek.mymonolith.spi.db.DBTest;
-import portaltek.mymonolith.spi.db.model.Item;
-import portaltek.mymonolith.spi.db.model.ItemChoice;
-import portaltek.mymonolith.spi.db.model.ItemStem;
-import portaltek.mymonolith.spi.db.model.ItemType;
+import portaltek.mymonolith.spi.db.model.item.Item;
+import portaltek.mymonolith.spi.db.model.item.ItemChoice;
+import portaltek.mymonolith.spi.db.model.item.ItemStem;
+import portaltek.mymonolith.spi.db.model.item.ItemType;
 
 import static org.junit.jupiter.api.Assertions.*;
 

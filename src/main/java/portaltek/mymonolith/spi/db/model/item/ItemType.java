@@ -1,21 +1,21 @@
-package portaltek.mymonolith.spi.db.model;
+package portaltek.mymonolith.spi.db.model.item;
 
 public enum ItemType {
 	MC("MC", "MultiChoice"),
 	MF("MF", "MathFormula")
 	;
-	private String cd;
+	private String code;
 	private String display;
 
 
 
-	ItemType(String cd, String display) {
-		this.cd = cd;
+	ItemType(String code, String display) {
+		this.code = code;
 		this.display = display;
 	}
 
-	public String cd() {
-		return cd;
+	public String code() {
+		return code;
 	}
 
 	public String display() {

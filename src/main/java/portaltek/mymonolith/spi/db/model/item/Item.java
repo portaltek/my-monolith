@@ -1,4 +1,4 @@
-package portaltek.mymonolith.spi.db.model;
+package portaltek.mymonolith.spi.db.model.item;
 
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
