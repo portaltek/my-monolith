@@ -26,7 +26,7 @@ public class MyMonolithApplication implements CommandLineRunner {
 	public void run(String... args) {
 
 		var item = new Item().type(ItemType.MC);
-		item.setStem(new ItemStem().item(item))
+		item.stem(new ItemStem().item(item))
 			.addItemChoice(new ItemChoice().item(item))
 			.addItemChoice(new ItemChoice().item(item));
 

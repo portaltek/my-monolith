@@ -45,7 +45,7 @@ public class Item extends EntityWithUUID {
 	ItemStatus status = ItemStatus.NEW;
 
 
-	public Item setStem(ItemStem stem) {
+	public Item stem(ItemStem stem) {
 		this.stem = stem;
 		stem.item(this);
 		return this;
@@ -86,10 +86,7 @@ public class Item extends EntityWithUUID {
 		return this.stem;
 	}
 
-	public Item stem(ItemStem stem) {
-		this.stem = stem;
-		return this;
-	}
+
 
 	public List<ItemChoice> choices() {
 		return this.choices;

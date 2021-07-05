@@ -42,7 +42,7 @@ class ItemRepo_DBTest {
 	void saveItemWithStemAndChoices() {
 
 		var item = new Item();
-		item.setStem(new ItemStem().item(item));
+		item.stem(new ItemStem().item(item));
 		item.addItemChoice(new ItemChoice().item(item));
 		item.addItemChoice(new ItemChoice().item(item));
 
@@ -64,7 +64,7 @@ class ItemRepo_DBTest {
 	void testLoadById() {
 
 		var item = new Item();
-		item.setStem(new ItemStem().item(item));
+		item.stem(new ItemStem().item(item));
 		item.addItemChoice(new ItemChoice().item(item));
 		item.addItemChoice(new ItemChoice().item(item));
 
