@@ -9,6 +9,8 @@
   <named-query name="Item.loadById">
     <query><![CDATA[
             SELECT i FROM Item i
+            LEFT JOIN FETCH i.stem
+            LEFT JOIN FETCH i.choices
             WHERE i.id = :id
       ]]>
     </query>

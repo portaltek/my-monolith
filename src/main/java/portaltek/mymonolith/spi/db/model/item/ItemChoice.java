@@ -3,20 +3,19 @@ package portaltek.mymonolith.spi.db.model.item;
 
 import portaltek.mymonolith.spi.util.jpa.EntityWithUUID;
 
-import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.StringJoiner;
+
+import static javax.persistence.FetchType.LAZY;
 
 
 @Entity
 public class ItemChoice extends EntityWithUUID {
 
-	@ManyToOne
-	@JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "FK_ITEM_CHOICE__ITEM"))
+	@ManyToOne(fetch = LAZY)
+	@JoinColumn(foreignKey = @ForeignKey(name = "FK_ITEM_CHOICE__ITEM"))
 	Item item;
-	Boolean isCorrect;
+	Boolean isCorrect = Boolean.FALSE;
 	String body;
 	String rationale;
 

@@ -3,12 +3,8 @@ package portaltek.mymonolith.spi.db.repo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import portaltek.mymonolith.spi.db.DBTest;
-import portaltek.mymonolith.spi.db.model.item.Item;
-import portaltek.mymonolith.spi.db.model.item.ItemChoice;
-import portaltek.mymonolith.spi.db.model.item.ItemStem;
-import portaltek.mymonolith.spi.db.model.item.ItemType;
+import portaltek.mymonolith.spi.db.model.item.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,8 +16,6 @@ class ItemRepo_DBTest {
 	ItemRepo itemRepo;
 	@Autowired
 	ItemChoiceRepo itemChoiceRepo;
-	@Value("{spring.datasource.url}")
-	String dbUrl;
 
 	@Test
 	void saveItem() {
@@ -68,17 +62,27 @@ class ItemRepo_DBTest {
 		item.addItemChoice(new ItemChoice().item(item));
 		item.addItemChoice(new ItemChoice().item(item));
 
-		itemRepo.save(item);
-		itemRepo.flush();
-		assertNotNull(item.id());
+		itemRepo.saveAndFlush(item);
+		final String persistedID = item.id();
 
-		var itemOpt = itemRepo.loadById(item.id());
+		assertNotNull(persistedID);
 
+		var itemOpt = itemRepo.loadById(persistedID);
 		assertTrue(itemOpt.isPresent());
-		assertNotNull(itemOpt.get().stem().id());
-		assertEquals(2, itemOpt.get().choices().size());
 
-		log.info(itemOpt.get().toString());
+		var itemLoaded = itemOpt.get();
+		itemLoaded.status(ItemStatus.IN_REVIEW);
+		itemRepo.saveAndFlush(itemLoaded);
+
+		var itemOpt2 = itemRepo.loadById(persistedID);
+		assertTrue(itemOpt2.isPresent());
+		var itemLoaded2 = itemOpt.get();
+
+		assertEquals(ItemStatus.IN_REVIEW, itemLoaded2.status());
+		assertNotNull(itemLoaded2.stem().id());
+		assertEquals(2, itemLoaded2.choices().size());
+
+		log.info(itemLoaded2.toString());
 
 	}
 }
