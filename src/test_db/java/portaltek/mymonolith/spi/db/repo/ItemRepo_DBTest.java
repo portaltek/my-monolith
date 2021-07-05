@@ -59,4 +59,26 @@ class ItemRepo_DBTest {
 		log.info(itemOpt.get().toString());
 
 	}
+
+	@Test
+	void testLoadById() {
+
+		var item = new Item();
+		item.setStem(new ItemStem().item(item));
+		item.addItemChoice(new ItemChoice().item(item));
+		item.addItemChoice(new ItemChoice().item(item));
+
+		itemRepo.save(item);
+		itemRepo.flush();
+		assertNotNull(item.id());
+
+		var itemOpt = itemRepo.loadById(item.id());
+
+		assertTrue(itemOpt.isPresent());
+		assertNotNull(itemOpt.get().stem().id());
+		assertEquals(2, itemOpt.get().choices().size());
+
+		log.info(itemOpt.get().toString());
+
+	}
 }
