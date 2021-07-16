@@ -19,8 +19,8 @@ dependencies {
     )
 
 
-    test_restAnnotationProcessor 'org.projectlombok:lombok'
-    test_restImplementation(
+    testApiRestAnnotationProcessor 'org.projectlombok:lombok'
+    testApiRestImplementation(
             'org.springframework.boot:spring-boot-starter-test',
 
     )

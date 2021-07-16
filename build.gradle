@@ -20,15 +20,15 @@ configurations {
         extendsFrom annotationProcessor
     }
 
-    test_restImplementation.extendsFrom testImplementation
-    test_restRuntime.extendsFrom testRuntime
+    testApiRestImplementation.extendsFrom testImplementation
+    testApiRestRuntime.extendsFrom testRuntime
 
     testSpiPostgresImplementation.extendsFrom testImplementation
     testSpiPostgresRuntime.extendsFrom testRuntime
 }
 
 sourceSets {
-    test_rest {
+    testApiRest {
         compileClasspath += sourceSets.main.output
         runtimeClasspath += sourceSets.main.output
     }
@@ -39,8 +39,8 @@ sourceSets {
 }
 idea {
     module {
-        testSourceDirs += project.sourceSets.test_rest.java.srcDirs
-        testSourceDirs += project.sourceSets.test_rest.resources.srcDirs
+        testSourceDirs += project.sourceSets.testApiRest.java.srcDirs
+        testSourceDirs += project.sourceSets.testApiRest.resources.srcDirs
 
         testSourceDirs += project.sourceSets.testSpiPostgres.java.srcDirs
         testSourceDirs += project.sourceSets.testSpiPostgres.resources.srcDirs

@@ -10,9 +10,9 @@ test {
     useJUnitPlatform()
 }
 
-task test_rest(type: Test) {
-    testClassesDirs = sourceSets.test_rest.output.classesDirs
-    classpath += sourceSets.test_rest.runtimeClasspath
+task testApiRest(type: Test) {
+    testClassesDirs = sourceSets.testApiRest.output.classesDirs
+    classpath += sourceSets.testApiRest.runtimeClasspath
 }
 
 task testSpiPostgres(type: Test) {

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
-class RestApiConfig_RestTest {
+class ApiRestConfig_ApiRestTest {
 	@Test
 	void test(){
 		log.info(this.getClass().getName());
