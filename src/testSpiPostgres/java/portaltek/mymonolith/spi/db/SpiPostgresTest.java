@@ -11,11 +11,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-@ExtendWith(PostgreSQLExtension.class)
+@ExtendWith(SpiPostgresTestExtension.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface DBTest {
+public @interface SpiPostgresTest {
 
 }

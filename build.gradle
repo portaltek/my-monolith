@@ -19,28 +19,31 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    test_dbImplementation.extendsFrom testImplementation
-    test_dbRuntime.extendsFrom testRuntime
+
     test_restImplementation.extendsFrom testImplementation
     test_restRuntime.extendsFrom testRuntime
+
+    testSpiPostgresImplementation.extendsFrom testImplementation
+    testSpiPostgresRuntime.extendsFrom testRuntime
 }
 
 sourceSets {
-    test_db {
+    test_rest {
         compileClasspath += sourceSets.main.output
         runtimeClasspath += sourceSets.main.output
     }
-    test_rest {
+    testSpiPostgres {
         compileClasspath += sourceSets.main.output
         runtimeClasspath += sourceSets.main.output
     }
 }
 idea {
     module {
-        testSourceDirs += project.sourceSets.test_db.java.srcDirs
-        testSourceDirs += project.sourceSets.test_db.resources.srcDirs
         testSourceDirs += project.sourceSets.test_rest.java.srcDirs
         testSourceDirs += project.sourceSets.test_rest.resources.srcDirs
+
+        testSourceDirs += project.sourceSets.testSpiPostgres.java.srcDirs
+        testSourceDirs += project.sourceSets.testSpiPostgres.resources.srcDirs
     }
 }
 

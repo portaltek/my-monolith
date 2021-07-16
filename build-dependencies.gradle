@@ -1,9 +1,9 @@
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
+
     implementation(
             'org.springframework.boot:spring-boot-starter-data-jpa',
             'org.springframework.boot:spring-boot-starter-web',
@@ -19,16 +19,17 @@ dependencies {
     )
 
 
-    test_dbAnnotationProcessor 'org.projectlombok:lombok'
-    test_dbImplementation(
-            'org.springframework.boot:spring-boot-starter-test',
-            'org.testcontainers:postgresql:1.15.3',
-    )
-
-
     test_restAnnotationProcessor 'org.projectlombok:lombok'
     test_restImplementation(
             'org.springframework.boot:spring-boot-starter-test',
 
     )
+
+
+    testSpiPostgresAnnotationProcessor 'org.projectlombok:lombok'
+    testSpiPostgresImplementation(
+            'org.springframework.boot:spring-boot-starter-test',
+            'org.testcontainers:postgresql:1.15.3',
+    )
+
 }

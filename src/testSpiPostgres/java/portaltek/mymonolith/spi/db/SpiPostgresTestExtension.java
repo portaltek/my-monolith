@@ -8,13 +8,13 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import static java.lang.System.setProperty;
 import static java.util.Objects.nonNull;
 
-public class PostgreSQLExtension implements BeforeAllCallback {
+public class SpiPostgresTestExtension implements BeforeAllCallback {
 
 	private final static String DOCKER_IMAGE = "postgres:13.3-alpine";
 	private final static String DB_USERNAME = "postgres";
 	private final static String DB_PASSWORD = "postgres";
 	private final static String DB_DRIVER = "org.postgresql.Driver";
-	private final static String DB_NAME = "pgDB";
+	private final static String DB_NAME = "myPostgresDB";
 	private final static int DB_PORT = 5432;
 
 	private static PostgreSQLContainer<?> container;

@@ -2,7 +2,7 @@ package portaltek.mymonolith.spi.db.config;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import portaltek.mymonolith.spi.db.DBTest;
+import portaltek.mymonolith.spi.db.SpiPostgresTest;
 
 
 import javax.persistence.EntityManager;
@@ -10,8 +10,8 @@ import javax.sql.DataSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DBTest
-class DBJpaConfig_DBTest {
+@SpiPostgresTest
+class DBJpaConfig_SpiPostgresTest {
 
 	@Autowired
 	private DataSource dataSource;
