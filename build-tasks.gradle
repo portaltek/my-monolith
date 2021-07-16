@@ -1,0 +1,29 @@
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {
+        displayGranularity = 2
+        events = ["PASSED", "FAILED", "SKIPPED"]
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task test_db(type: Test) {
+    testClassesDirs = sourceSets.test_db.output.classesDirs
+    classpath += sourceSets.test_db.runtimeClasspath
+}
+
+task test_rest(type: Test) {
+    testClassesDirs = sourceSets.test_rest.output.classesDirs
+    classpath += sourceSets.test_rest.runtimeClasspath
+}
+
+sonarqube  {
+    properties {
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.login", "5904bbad3dafc268395896ce3a44f8305a3e521f"
+        property "sonar.projectKey", "portaltek.my-monolith"
+    }
+}

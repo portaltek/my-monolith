@@ -8,6 +8,8 @@ plugins {
     id "org.sonarqube" version "3.0"
 }
 
+apply from: "build-ext.gradle"
+
 group = 'portaldev'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '16'
@@ -42,67 +44,5 @@ idea {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation(
-            'org.springframework.boot:spring-boot-starter-data-jpa',
-            'org.springframework.boot:spring-boot-starter-web',
-            'org.projectlombok:lombok',
-            'org.postgresql:postgresql'
-    )
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    testAnnotationProcessor "org.projectlombok:lombok"
-    testImplementation(
-            'org.springframework.boot:spring-boot-starter-test',
-    )
-
-
-    test_dbAnnotationProcessor 'org.projectlombok:lombok'
-    test_dbImplementation(
-            'org.springframework.boot:spring-boot-starter-test',
-            'org.testcontainers:postgresql:1.15.3',
-    )
-
-
-    test_restAnnotationProcessor 'org.projectlombok:lombok'
-    test_restImplementation(
-            'org.springframework.boot:spring-boot-starter-test',
-
-    )
-}
-
-
-tasks.withType(Test) {
-    useJUnitPlatform()
-    testLogging {
-        displayGranularity = 2
-        events = ["PASSED", "FAILED", "SKIPPED"]
-    }
-}
-
-test {
-    useJUnitPlatform()
-}
-
-task test_db(type: Test) {
-    testClassesDirs = sourceSets.test_db.output.classesDirs
-    classpath += sourceSets.test_db.runtimeClasspath
-}
-
-task test_rest(type: Test) {
-    testClassesDirs = sourceSets.test_rest.output.classesDirs
-    classpath += sourceSets.test_rest.runtimeClasspath
-}
-
-sonarqube  {
-    properties {
-        property "sonar.host.url", "http://localhost:9000"
-        property "sonar.login", "5904bbad3dafc268395896ce3a44f8305a3e521f"
-        property "sonar.projectKey", "portaltek.my-monolith"
-    }
-}
+apply from: "build-dependencies.gradle"
+apply from: "build-tasks.gradle"
