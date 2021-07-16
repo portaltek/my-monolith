@@ -1,6 +1,8 @@
 ### TODO
-    - feat: Add flyway and create db creation script
-    - feat: queries in external XML, Criteria Query, Pages
+    FEAT: 
+    - Add flyway and create db creation script
+    - Queries in external XML, Criteria Query, Pages
+    -     
 
 
 
