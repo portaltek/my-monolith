@@ -39,3 +39,15 @@ kubectl apply -f k8s-mongoexpress-configmap.yml
 kubectl apply -f k8s-mongoexpress-deployment.yml
 
 kubectl get all | grep mongo
+
+minikube service mongo-express-service
+
+
+kubectl logs mongo-express-8565796ccb-hhf4k
+kubectl exec -it mongo-express-8565796ccb-hhf4k -- bin/bash
+
+kubectl get all | grep mongo
+kubectl apply -f k8s-mongo-express.yml
+kubectl delete -f k8s-mongo-express.yml
+kubectl describe pod mongo-express-8565796ccb-s7dxf
+kubectl get configmap
