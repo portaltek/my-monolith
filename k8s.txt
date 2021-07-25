@@ -11,6 +11,7 @@ kubectl get replicaset
 kubectl edit deployment nginx-depl
 kubectl logs nginx-depl-7fc44fc5d4-27lbn
 kubectl logs mongo-depl-5fd6b7d4b4-64snb
+kubectl describe pod mongo-depl-5fd6b7d4b4-64snb
 kubectl create deployment mongo-depl --image=mongo
 kubectl exec -it mongo-depl-5fd6b7d4b4-64snb -- bin/bash
 kubectl delete deployment mongo-depl
@@ -23,31 +24,16 @@ kubectl get all
 echo -n 'username' | base64
 echo -n 'password' | base64
 
-kubectl apply -f k8s-mongodb-secret.yml
+kubectl apply -f k8s-mongo-db.yml
 kubectl get secret
-kubectl apply -f k8s-mongodb-depl.yml
-kubectl apply -f k8s-mongodb-depl-service.yml
+
 kubectl get pod
-kubectl describe pod mongodb-depl-8f6675bc5-fqq7j
+
 kubectl get service
 kubectl describe service mongodb-service
 kubectl get pod -o wide
-kubectl get all | grep mongodb
-
-kubectl apply -f k8s-mongoexpress-configmap.yml
-
-kubectl apply -f k8s-mongoexpress-deployment.yml
-
 kubectl get all | grep mongo
+kubectl apply -f k8s-mongo-express.yml
 
 minikube service mongo-express-service
 
-
-kubectl logs mongo-express-8565796ccb-hhf4k
-kubectl exec -it mongo-express-8565796ccb-hhf4k -- bin/bash
-
-kubectl get all | grep mongo
-kubectl apply -f k8s-mongo-express.yml
-kubectl delete -f k8s-mongo-express.yml
-kubectl describe pod mongo-express-8565796ccb-s7dxf
-kubectl get configmap
