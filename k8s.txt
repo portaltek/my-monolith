@@ -40,3 +40,12 @@ minikube service mongo-express-service
 kubectl get namespace
 kubectl create namespace my-namespace
 kubectl delete namespace my-namespace
+
+kubectl apply -f k8s-dashboard-ingress.yml
+# ADD IP IN HOSTS FILE
+sudo vim /etc/hosts
+
+kubectl get ingress
+kubectl apply -f k8s-mongo-ingress.yml
+kubectl delete -f k8s-mongo-ingress.yml
+# OPEN IN BROWSER http://my-mongo-app.com:30000/
