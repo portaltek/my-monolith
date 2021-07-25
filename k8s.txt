@@ -37,3 +37,6 @@ kubectl apply -f k8s-mongo-express.yml
 
 minikube service mongo-express-service
 
+kubectl get namespace
+kubectl create namespace my-namespace
+kubectl delete namespace my-namespace
