@@ -26,5 +26,10 @@ echo -n 'password' | base64
 kubectl apply -f k8s-mongodb-secret.yml
 kubectl get secret
 kubectl apply -f k8s-mongodb-depl.yml
+kubectl apply -f k8s-mongodb-depl-service.yml
 kubectl get pod
 kubectl describe pod mongodb-depl-8f6675bc5-fqq7j
+kubectl get service
+kubectl describe service mongodb-service
+kubectl get pod -o wide
+kubectl get all | grep mongodb
