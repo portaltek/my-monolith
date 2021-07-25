@@ -1,0 +1,23 @@
+brew install hyperkit
+brew install minikube
+kubectl
+minikube
+minikube start --vm-driver=hyperkit
+kubectl get nodes
+kubectl get pod
+kubectl get services
+kubectl create deployment nginx-depl --image=nginx
+kubectl get replicaset
+kubectl edit deployment nginx-depl
+kubectl logs nginx-depl-7fc44fc5d4-27lbn
+kubectl logs mongo-depl-5fd6b7d4b4-64snb
+kubectl create deployment mongo-depl --image=mongo
+kubectl exec -it mongo-depl-5fd6b7d4b4-64snb -- bin/bash
+kubectl delete deployment mongo-depl
+kubectl delete deployment nginx-depl
+kubectl apply -f k8s-nginx-depl.yml
+kubectl apply -f k8s-nginx-depl-service.yml
+
+
+kubectl get all
+echo -n 'username'
