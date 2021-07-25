@@ -20,4 +20,11 @@ kubectl apply -f k8s-nginx-depl-service.yml
 
 
 kubectl get all
-echo -n 'username'
+echo -n 'username' | base64
+echo -n 'password' | base64
+
+kubectl apply -f k8s-mongodb-secret.yml
+kubectl get secret
+kubectl apply -f k8s-mongodb-depl.yml
+kubectl get pod
+kubectl describe pod mongodb-depl-8f6675bc5-fqq7j
