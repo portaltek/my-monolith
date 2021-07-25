@@ -33,3 +33,9 @@ kubectl get service
 kubectl describe service mongodb-service
 kubectl get pod -o wide
 kubectl get all | grep mongodb
+
+kubectl apply -f k8s-mongoexpress-configmap.yml
+
+kubectl apply -f k8s-mongoexpress-deployment.yml
+
+kubectl get all | grep mongo
